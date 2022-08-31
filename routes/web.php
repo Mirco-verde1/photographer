@@ -5,7 +5,7 @@ use App\Http\Controllers\Categories\CategoriesController;
 use App\Http\Controllers\Photos\PhotosController;
 
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
@@ -44,6 +44,7 @@ Route::group(['namespace' => 'pannello-amministratore', 'as' =>'admin.'], functi
 
         //PHOTOS ROUTES
         Route::get('/aggiunta-foto', [PhotosController::class, 'create'])->middleware(['auth'])->name('add-photo');
+        Route::post('/salva-foto', [PhotosController::class, 'store'])->middleware(['auth'])->name('save-photo');
 
         //CATEGORIES ROUTES
         Route::get('/aggiunta-categoria', [CategoriesController::class, 'create'])->middleware(['auth'])->name('add-category');
@@ -53,3 +54,7 @@ Route::group(['namespace' => 'pannello-amministratore', 'as' =>'admin.'], functi
 
 
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

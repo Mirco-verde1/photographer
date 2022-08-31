@@ -17,7 +17,7 @@ class CreatePhotosTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('category_id')->nullable();
-            $table->string('photo_root');
+            $table->string('path');
             $table->string('name')->nullable();
             $table->timestamps();
 
